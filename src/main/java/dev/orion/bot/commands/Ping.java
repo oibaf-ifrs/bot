@@ -16,15 +16,16 @@
 
 package dev.orion.bot.commands;
 
+import org.javacord.api.event.message.MessageCreateEvent;
+
 /**
  * Ping.
  */
-public class Ping implements Command {
+public class Ping extends Command {
 
     @Override
-    public void execute() {
-        // TODO Auto-generated method stub
-
+    public void execute(MessageCreateEvent event) {
+        event.getChannel().sendMessage("pong");
     }
 
     @Override

@@ -17,12 +17,12 @@
 package dev.orion.bot;
 
 import dev.orion.bot.commands.Command;
-import dev.orion.bot.commands.CommandNotFound;
 import dev.orion.bot.commands.Ping;
 import java.util.HashMap;
 import java.util.Map;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.event.message.MessageCreateEvent;
 
 /**
  * OrionBot.
@@ -31,13 +31,14 @@ public class OrionBot {
 
     private Map<String, Command> commands;
 
-    private String token = "discord token";
+    private final String token = "your token";
 
     /**
      * OrionBot.
      */
     public OrionBot() {
         this.commands = new HashMap<String, Command>();
+        this.loadCommands();
     }
 
     /**
@@ -46,40 +47,36 @@ public class OrionBot {
     public void listen() {
         DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
         api.addMessageCreateListener(event -> {
-            if (event.getMessageContent().equalsIgnoreCase("!ping")) {
-                event.getChannel().sendMessage("Pong!");
-            }
+            // according docs/uml/sequence.puml
+            String strCommand = this.getCommand(event);
+            Command command = this.selectCommand(strCommand);
+            command.execute(event);
         });
-
-        // Print the invite url of your bot
-        System.out.println("You can invite the bot by using the following url: " + api.createBotInvite());
     }
 
     /**
-     * selectCommand.
-     *
+     * Returns the name of a command.
+     * @param event
+     * @return the name of a command
+     */
+    private String getCommand(MessageCreateEvent event) {
+        return event.getMessageContent().toLowerCase().split(" ")[0];
+    }
+
+    /**
+     * Returns a command.
      * @param name
-     * @return
+     * @return a command
      */
-    public Command selectCommand(String name) throws CommandNotFound {
-        // TODO
-        return null;
+    public Command selectCommand(String name) {
+        return this.commands.get(name);
     }
 
     /**
-     * execCommand.
-     *
-     * @param command
-     */
-    public void execCommand(Command command) {
-        // TODO
-    }
-
-    /**
-     * loadCommand.
+     * Loads the commands in the bot.
      */
     private void loadCommands() {
-        this.commands.put("ping", new Ping());
+        this.commands.put("!ping", new Ping());
     }
 
 }

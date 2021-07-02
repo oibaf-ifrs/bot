@@ -4,10 +4,10 @@ actor user as user
 participant OrionBot as bot
 participant Command as command
 
-user-->bot: MessageCreateEvent
-bot->bot: selectCommand(String name)
-bot->bot: execCommand(Command command)
-bot->command: void execute()
-command-->>user: String
+user-->bot: MessageCreateEvent event
+bot->bot: String getCommand(MessageCreateEvent event)
+bot->bot: Command selectCommand(String name)
+bot->command: void executeCommand(MessageCreateEvent event)
+command-->>user: String messsage
 
 @enduml

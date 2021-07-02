@@ -16,21 +16,23 @@
 
 package dev.orion.bot.commands;
 
+import org.javacord.api.event.message.MessageCreateEvent;
+
 /**
- * Command Interface.
+ * Abstract command.
  */
-public interface Command {
+public abstract class Command {
 
     /**
-     * execute.
+     * Executes a command.
      */
-    void execute();
+    public abstract void execute(MessageCreateEvent event);
 
     /**
      * Returns the help of a command.
      *
      * @return A String with the help of the command
      */
-    String getHelp();
+    public abstract String getHelp();
 
 }

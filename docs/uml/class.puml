@@ -11,16 +11,17 @@ class App{
 
 class OrionBot {
     - Map<String, Command> commands
+    - String discordToken
 --
     + void listen()
-    + Command selectCommand(String name) throws CommandNotFound
-    + void execCommand(Command command)
+    + String getCommand(MessageCreateEvent event)
+    + Command selectCommand(String name)
     - void loadCommands()
 }
 
-interface Command {
-    + String execute()
-    + String getHelp()
+abstract Command {
+    + {abstract} void executeCommand(MessageCreateEvent event);
+    + {abstract} String getHelp()
 }
 
 Class Ping{

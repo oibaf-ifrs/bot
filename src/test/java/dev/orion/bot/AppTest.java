@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-package edu.ifrs.bot;
+package dev.orion.bot;
 
-import dev.orion.bot.OrionBot;
-import dev.orion.bot.commands.CommandNotFound;
 import dev.orion.bot.commands.Ping;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -37,18 +35,18 @@ public class AppTest {
     @BeforeAll
     public static void init() {
         bot = Mockito.mock(OrionBot.class);
-        when(bot.selectCommand("ping")).thenReturn(new Ping());
-        when(bot.selectCommand("xyz")).thenThrow(CommandNotFound.class);
+        when(bot.selectCommand("!ping")).thenReturn(new Ping());
+        when(bot.selectCommand("xyz")).thenThrow(NullPointerException.class);
     }
 
     @Test
     public void selectCommand() {
-        assertInstanceOf(Ping.class, bot.selectCommand("ping"));
+        assertInstanceOf(Ping.class, bot.selectCommand("!ping"));
     }
 
     @Test
     public void commandNotFound() {
-        assertThrows(CommandNotFound.class, () -> bot.selectCommand("xyz"));
+        assertThrows(NullPointerException.class, () -> bot.selectCommand("xyz"));
     }
 
 }
