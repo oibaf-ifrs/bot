@@ -1,0 +1,29 @@
+@startuml
+
+App *-- OrionBot
+OrionBot o--> Command
+Command <|-- Ping
+
+class App{
+--
++ void main(String[] args)
+}
+
+class OrionBot{
+    - Map<String, Command> commands
+--
+    + void listen()
+    + Command selectCommand(String name) throws CommandNotFound
+    + void execCommand(Command command)
+    - void loadCommands()
+}
+
+interface Command {
+    + String execute()
+    + String getHelp()
+}
+
+Class Ping{
+
+}
+@enduml

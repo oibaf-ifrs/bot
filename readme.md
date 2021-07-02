@@ -1,1 +1,1 @@
-# Discord Orion Bot
+# Orion Bot for Discord
