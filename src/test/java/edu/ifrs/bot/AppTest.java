@@ -23,7 +23,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
@@ -49,13 +48,7 @@ public class AppTest {
 
     @Test
     public void commandNotFound() {
-        Exception exception = assertThrows(CommandNotFound.class, () -> bot.selectCommand("xyz"));
-        assertEquals("edu.ifrs.bot.commands.CommandNotFound", exception.toString());
-    }
-
-    @Test
-    public void test() {
-        assertEquals(1, 1);
+        assertThrows(CommandNotFound.class, () -> bot.selectCommand("xyz"));
     }
 
 }

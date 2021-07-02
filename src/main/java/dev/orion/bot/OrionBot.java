@@ -63,9 +63,9 @@ public class OrionBot {
     /**
      * execCommand.
      *
-     * @param name
+     * @param command
      */
-    public void execCommand(Command name) {
+    public void execCommand(Command command) {
         // TODO
     }
 

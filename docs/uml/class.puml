@@ -9,7 +9,7 @@ class App{
 + void main(String[] args)
 }
 
-class OrionBot{
+class OrionBot {
     - Map<String, Command> commands
 --
     + void listen()
