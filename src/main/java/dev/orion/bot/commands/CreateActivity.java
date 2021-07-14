@@ -19,30 +19,21 @@ package dev.orion.bot.commands;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 /**
- * Abstract command.
+ * Creates a activity in Orion Bot
  */
-public abstract class Command {
+public class CreateActivity extends Command {
 
-    private String command;
+    @Override
+    public void execute(MessageCreateEvent event) {
+        // TODO Auto-generated method stub
 
-    /**
-     * Executes a command.
-     */
-    public abstract void execute(MessageCreateEvent event);
-
-    /**
-     * Returns the help of a command.
-     *
-     * @return A String with the help of the command
-     */
-    public abstract String getHelp();
-
-    public String getCommand() {
-        return command;
     }
 
-    public void setCommand(String command) {
-        this.command = command;
+    @Override
+    public String getHelp() {
+        StringBuilder help = new StringBuilder();
+        help.append("Create Activity - https://orion-services.github.io/bot/commands/cmdCreateActivity.html");
+        return help.toString();
     }
 
 }
