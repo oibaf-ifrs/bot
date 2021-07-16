@@ -5,6 +5,14 @@ nav_order: 2
 has_children: true
 ---
 
-# List of Commands
+# List available commands
 
 * [Create Activity](cmdCreateActivity.md)
+
+* [Join Activity](cmdJoinActivity.md)
+
+* [Check Status](cmdCheckStatus.md)
+
+* [Participates](cmdParticipate.md)
+
+* [List Activities](cmdListActivities.md)

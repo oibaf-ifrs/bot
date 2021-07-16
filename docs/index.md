@@ -5,14 +5,12 @@ nav_order: 1
 ---
 # Orion Bot
 
-## Class Diagram
+Discord Orion Bot is a tool that has the objective of providing opportunities for different types of group educational activities.
 
-<center>
-<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/orion-services/bot/main/docs/uml/class.puml" alt="Class" width="50%" height="50%">
-</center>
+## User documentation 
 
-## Sequence Diagram
+Please check the [commands](commands/commands.md) to know how to use the Bot.
 
-<center>
-<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/orion-services/bot/main/docs/uml/sequence.puml" alt="Sequence" width="50%" height="50%">
-</center>
+# Development documentation
+
+Discord Orion Bot is an open source project, thus, we use [UML](uml.md) diagrams to model de system and organize the development of the features.

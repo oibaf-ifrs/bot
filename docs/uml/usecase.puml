@@ -6,7 +6,7 @@ rectangle Bot {
     usecase "Create Activity" as ca
     usecase "Join Actitivy" as ja
     usecase "Check Status" as cs
-    usecase "Particitapes" as pa
+    usecase "Participates" as pa
     usecase "List Activities" as la
 }
 user --> ca

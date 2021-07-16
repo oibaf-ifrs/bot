@@ -1,4 +1,7 @@
 @startuml
+
+title Participates: use case normal flow
+
 User --> Bot: types: !o participate alias
 Bot --> Activity: sends the alias and request an edition URL
 Activity --> Editor: requests the edition URL

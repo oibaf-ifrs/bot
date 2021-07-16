@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Create Activity
+title: Command - Create Activity
 parent: Commands
 nav_order: 2
 ---

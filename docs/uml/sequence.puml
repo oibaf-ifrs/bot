@@ -1,4 +1,5 @@
 @startuml
+title Command Execution
 
 actor user as user
 participant OrionBot as bot
@@ -9,5 +10,4 @@ bot->bot: String getCommand(MessageCreateEvent event)
 bot->bot: Command selectCommand(String name)
 bot->command: void executeCommand(MessageCreateEvent event)
 command-->>user: String messsage
-
 @enduml
