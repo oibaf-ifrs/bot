@@ -18,20 +18,23 @@ package dev.orion.bot;
 
 import dev.orion.bot.commands.Command;
 import dev.orion.bot.commands.Ping;
+import discord4j.core.DiscordClient;
+import discord4j.core.GatewayDiscordClient;
+import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Message;
 import java.util.HashMap;
 import java.util.Map;
-import org.javacord.api.DiscordApi;
-import org.javacord.api.DiscordApiBuilder;
-import org.javacord.api.event.message.MessageCreateEvent;
 
 /**
- * OrionBot.
+ * Orion Bot for Discord.
  */
 public class OrionBot {
 
-    private Map<String, Command> commands;
+    private final String token = "ODU2MjUwMTM4MDYyMzU2NDkx.YM-TFQ.fWFROU2UaLWpaWj9HMtPRrkIBpA";
+    private DiscordClient client;
+    private GatewayDiscordClient gateway;
 
-    private final String token = "your token";
+    private Map<String, Command> commands;
 
     /**
      * OrionBot.
@@ -39,37 +42,33 @@ public class OrionBot {
     public OrionBot() {
         this.commands = new HashMap<String, Command>();
         this.loadCommands();
+
+        this.client = DiscordClient.create(this.token);
+        this.gateway = client.login().block();
     }
 
     /**
-     * listen.
+     * Listen the users inputs.
      */
     public void listen() {
-        DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
-        api.addMessageCreateListener(event -> {
-            // according docs/uml/sequence.puml
-            String strCommand = this.getCommand(event);
-            Command command = this.selectCommand(strCommand);
-            command.execute(event);
+        gateway.on(MessageCreateEvent.class).subscribe(event -> {
+            final Message message = event.getMessage();
+            System.out.println(message.getContent());
+            Command command = this.selectCommand(message.getContent());
+            if (command != null) {
+                command.execute(message);
+            }
         });
-    }
-
-    /**
-     * Returns the name of a command.
-     * @param event
-     * @return the name of a command
-     */
-    private String getCommand(MessageCreateEvent event) {
-        return event.getMessageContent().toLowerCase().split(" ")[0];
+        gateway.onDisconnect().block();
     }
 
     /**
      * Returns a command.
-     * @param name
+     * @param command
      * @return a command
      */
-    public Command selectCommand(String name) {
-        return this.commands.get(name);
+    public Command selectCommand(String command) {
+        return this.commands.get(command);
     }
 
     /**

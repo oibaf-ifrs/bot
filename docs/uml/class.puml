@@ -1,6 +1,6 @@
 @startuml
 
-package orion.dev.bot.model {
+package dev.orion.bot.model {
 
     Activity "0..*" -- "1..*" User : group  
     Activity "0..*" -- "1" User : owner  
@@ -31,7 +31,7 @@ package orion.dev.bot.model {
 
 }
 
-package orion.dev.bot.commands {
+package dev.orion.bot.commands {
 
     Command <|-- CreateActivity
     Command <|-- Participace
@@ -56,7 +56,7 @@ package orion.dev.bot.commands {
 
 }
 
-package orion.dev.bot {
+package dev.orion.bot {
 
     App *-- OrionBot
     OrionBot o--> Command

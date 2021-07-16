@@ -16,7 +16,8 @@
 
 package dev.orion.bot.commands;
 
-import org.javacord.api.event.message.MessageCreateEvent;
+import discord4j.core.object.entity.Message;
+import discord4j.core.object.entity.channel.MessageChannel;
 
 /**
  * Ping.
@@ -24,8 +25,9 @@ import org.javacord.api.event.message.MessageCreateEvent;
 public class Ping extends Command {
 
     @Override
-    public void execute(MessageCreateEvent event) {
-        event.getChannel().sendMessage("pong");
+    public void execute(Message message) {
+        final MessageChannel channel = message.getChannel().block();
+        channel.createMessage("Pong!").block();
     }
 
     @Override

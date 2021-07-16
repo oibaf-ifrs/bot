@@ -7,8 +7,6 @@ nav_order: 2
 
 # Create Activity
 
-Creates a learning activity inside the bot
+Creates a learning activity and returns, if available, the activity alias in the format `discord-username/alias`:
 
     !o create alias
-
-Creates a learning activity inside the bot and returns the activity alias in the format discord-username/alias

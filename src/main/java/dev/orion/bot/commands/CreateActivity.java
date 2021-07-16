@@ -16,17 +16,16 @@
 
 package dev.orion.bot.commands;
 
-import org.javacord.api.event.message.MessageCreateEvent;
+import discord4j.core.object.entity.Message;
 
 /**
- * Creates a activity in Orion Bot
+ * Creates a activity in Orion Bot.
  */
 public class CreateActivity extends Command {
 
     @Override
-    public void execute(MessageCreateEvent event) {
+    public void execute(Message message) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -35,5 +34,4 @@ public class CreateActivity extends Command {
         help.append("Create Activity - https://orion-services.github.io/bot/commands/cmdCreateActivity.html");
         return help.toString();
     }
-
 }

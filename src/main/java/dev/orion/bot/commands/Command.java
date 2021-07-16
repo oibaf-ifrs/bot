@@ -16,7 +16,7 @@
 
 package dev.orion.bot.commands;
 
-import org.javacord.api.event.message.MessageCreateEvent;
+import discord4j.core.object.entity.Message;
 
 /**
  * Abstract command.
@@ -28,7 +28,7 @@ public abstract class Command {
     /**
      * Executes a command.
      */
-    public abstract void execute(MessageCreateEvent event);
+    public abstract void execute(Message message);
 
     /**
      * Returns the help of a command.
